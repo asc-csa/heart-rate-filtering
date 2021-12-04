@@ -1,4 +1,6 @@
-# Filtre de fréquence cardiaque (English follows)
+[[English](#heart-rate-filter-le-français-précède)] [[Français](#filtre-de-fréquence-cardiaque-english-follows)]
+
+# Filtre de fréquence cardiaque (English follows) 
 
 Ce filtre utilise un seuil de variation pour identifier les zones de bruit dans les données de fréquence cardiaque, et prédit les vraies valeurs de fréquence cardiaque à l'aide d'une régression linéaire.
 
@@ -8,23 +10,23 @@ Ce filtre utilise un seuil de variation pour identifier les zones de bruit dans 
 
 > Chaque intervalle de vitesse est analysé séparément pour le bruit, car on s'attend à ce que la fréquence cardiaque change rapidement si la vitesse change.  L'intervalle 2 contient une quantité importante de bruit entre le temps=415 et le temps=625. Le seuil par défaut est de 10 bpm, et peut être ajusté en fonction du bruit présent dans les données.
 
-![fig1.png](attachment:fig1.png)
+![fig1.png](images/fig1.png)
 
 ### 2. Supprimez les zones de bruit.
 
-![fig2.png](attachment:fig2.png)
+![fig2.png](images/fig2.png)
 
-### 3. Entraîner une régression logistique
+### 3. Entraîner une régression logistique.
 
 > Un modèle de régression linéaire est entraîné sur les données restantes de l'intervalle 2 pour prédire les valeurs réelles du bruit supprimé.
 
-![fig3.png](attachment:fig3.png)
+![fig3.png](images/fig3.png)
 
-### 4. Prédire les valeurs
+### 4. Prédire les valeurs.
 
 > Les valeurs supprimées sont remplacées par les valeurs prédites par la régression linéaire.
 
-![fig4.png](attachment:fig4.png)
+![fig4.png](images/fig4.png)
 
 ## Utilisation
 
@@ -58,7 +60,7 @@ données filtrées = threshold_filter(df.heartrate_bpm.values, intervals_array=d
 hr.plot(df, 'Example 1 : Unfiltered')
 ```
 
-![fig5.PNG](attachment:fig5.PNG)
+![fig5.PNG](images/fig5.PNG)
 
 ### Tracer des données filtrées
 
@@ -71,18 +73,22 @@ hr.plot(df, 'Example 1 : Unfiltered')
 hr.plot(data, 'Example 1 : Filtered', filt='threshold', interval=5)
 ```
 
-!fig6.PNG](attachment:fig6.PNG)
+![fig6.PNG](images/fig6.PNG)
 
 ### Comparer les filtres
 
 ```python
 hr.plot_compare(df)
 ```
+![fig7.PNG](images/fig7.PNG)
 
-![fig7.PNG](pièce jointe:fig7.PNG)
+## Statut de développement
 
-
-
+La solution pour filtrer la fréquence cardiaque est encore en cours de développement. Le seuil utilisé pour le filtrage nécessite
+une entrée manuelle, et le filtre de seuil utilise seulement une régression linéaire.
+ 
+ 
+ 
 # Heart Rate Filter (Le français précède)
 
 This filter uses a variation threshold to identify areas of noise in the heart rate data, and predicts the true heart rate values using a linear regression.
@@ -93,23 +99,23 @@ This filter uses a variation threshold to identify areas of noise in the heart r
 
 > Each speed interval is analyzed for noise separately since it is expected that heart rate will change quickly if the speed changes.  Interval 2 contains a significant amount of noise between time=415 and time=625. The default threshold is 10 bpm, and can be adjusted depending on the noise present in the data.
 
-![fig1.png](attachment:fig1.png)
+![fig1.png](images/fig1.png)
 
 ### 2. Delete areas of noise.
 
-![fig2.png](attachment:fig2.png)
+![fig2.png](images/fig2.png)
 
-### 3. Train a logistic regression
+### 3. Train a logistic regression.
 
 > A linear regression model is trained on the remaining data within interval 2 to predict the true values of the deleted noise.
 
-![fig3.png](attachment:fig3.png)
+![fig3.png](images/fig3.png)
 
-### 4. Predict Values
+### 4. Predict Values.
 
 > The deleted values are replaced with the predicted values from the linear regression.
 
-![fig4.png](attachment:fig4.png)
+![fig4.png](images/fig4.png)
 
 ## Usage
 ```
@@ -142,7 +148,7 @@ filtered_data = threshold_filter(df.heartrate_bpm.values, intervals_array=df.sta
 hr.plot(df, 'Example 1: Unfiltered')
 ```
 
-![fig5.PNG](attachment:fig5.PNG)
+![fig5.PNG](images/fig5.PNG)
 
 ### Plotting Filtered Data
 
@@ -155,7 +161,7 @@ hr.plot(df, 'Example 1: Unfiltered')
 hr.plot(data, 'Example 1: Filtered', filt='threshold', interval=5)
 ```
 
-![fig6.PNG](attachment:fig6.PNG)
+![fig6.PNG](images/fig6.PNG)
 
 ### Compare Filters
 
@@ -163,4 +169,9 @@ hr.plot(data, 'Example 1: Filtered', filt='threshold', interval=5)
 hr.plot_compare(df)
 ```
 
-![fig7.PNG](attachment:fig7.PNG)
+![fig7.PNG](images/fig7.PNG)
+
+## Development Status
+
+The solution to filtering heart rate is still in development. The threshold used for filtering requires
+a manual input, and the threshold filter only uses a linear regression.
