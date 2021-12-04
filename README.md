@@ -51,7 +51,7 @@ Attributs de données requis :
 ### Filtrer la fréquence cardiaque
 
 ```python
-données filtrées = threshold_filter(df.heartrate_bpm.values, intervals_array=df.stage, threshold=5)
+filtered_data = threshold_filter(df.heartrate_bpm.values, intervals_array=df.stage, threshold=5)
 ```
 
 ### Tracé des données brutes
